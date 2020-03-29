@@ -29,7 +29,7 @@ void setup() {
   sx = 0;
   sy = floor(random(160,480));
   sWeight = 80;
-  xSpeed = 3;
+  xSpeed = 5;
   //robot
   rWeight = 40;
   rx = random(160,640-rWeight);
@@ -69,13 +69,17 @@ void setup() {
  
  //soldier
  sx = sx + xSpeed;
- sx = sx%(640+sWeight);
-if(sy<240){sy = 160;}
+if(sx>width){sx = 0;
+             sy =floor(random(160,480));}
+  
+
+  if(sy<240){sy = 160;}
   else if (sy<320){sy = 240;}
   else if (sy<400){sy = 320;}
   else if (sy<480){sy = 400;}
+
   image(soldierImg,sx,sy);
-  
+
   //lazer
   lx = lx-lxSpeed;
   if(gunx-lx>145){lx = gunx+20;}
