@@ -1,3 +1,11 @@
+/* @pjs preload=
+"img/bg.jpg,
+img/groundhog.png,
+img/life.png,
+img/robot.png,
+img/soil.png,
+img/soldier.png"; */
+
 PImage bgImg;
 PImage hugImg;
 PImage lifeImg;
@@ -14,7 +22,7 @@ int sWeight;
 float rx,ry;
 int rWeight;
 //lazer
-float lx,lxSpeed,gunx;
+float lx,lxSpeed,gunx,ly;
 void setup() { 
   size(640,480);
   bgImg = loadImage("img/bg.jpg");
@@ -29,15 +37,15 @@ void setup() {
   sx = 0;
   sy = floor(random(160,480));
   sWeight = 80;
-  xSpeed = 5;
+  xSpeed = 4;
   //robot
   rWeight = 40;
   rx = random(160,640-rWeight);
   ry = floor(random(160,480));
   //lazer
-  gunx = rx;
+  gunx = rx+25;
   lx = rx+20;
-  lxSpeed =2;
+  lxSpeed =1;
   
   
 }
@@ -69,7 +77,7 @@ void setup() {
  
  //soldier
  sx = sx + xSpeed;
-if(sx>width){sx = 0;
+if(sx>width){sx = 0-sWeight;
              sy =floor(random(160,480));}
   
 
@@ -81,18 +89,35 @@ if(sx>width){sx = 0;
   image(soldierImg,sx,sy);
 
   //lazer
+  ly = ry+37;
   lx = lx-lxSpeed;
-  if(gunx-lx>145){lx = gunx+20;}
-  stroke(255,0,0);
-  strokeWeight(10);
-  line(lx,ry+37,lx-40,ry+37);
+  fill(255,0,0);
+  noStroke();
+  rectMode(CORNERS);
+  if(gunx-lx>185){
+    lx=gunx;
+}
+  if(gunx-lx<40){
+    rect(lx,ly-5,gunx,ly+5,5);
+  }
+  else { 
+    rect(lx,ly-5,lx+40,ly+5,5);
+  }
   
+  
+  //stroke(255,0,0);
+  //strokeWeight(10);
   //robot
   if(ry<240){ry = 160;}
   else if (ry<320){ry = 240;}
   else if (ry<400){ry = 320;}
   else if (ry<480){ry = 400;}
   image(robotImg,rx,ry);
-  
-
 }
+     
+     
+ 
+ 
+
+ 
+ 
