@@ -40,7 +40,7 @@ void setup() {
   xSpeed = 4;
   //robot
   rWeight = 40;
-  rx = random(160,640-rWeight);
+  rx = random(160,width-rWeight);
   ry = floor(random(160,480));
   //lazer
   gunx = rx+25;
@@ -64,7 +64,6 @@ void setup() {
  imageMode(CORNER);
  image(soliImg,0,y-y/3);
  //life
- imageMode(CORNER);
  image(lifeImg,x/32,y/24,50,50);
  image(lifeImg,x/32+70,y/24,50,50);
  image(lifeImg,x/32+140,y/24,50,50);
